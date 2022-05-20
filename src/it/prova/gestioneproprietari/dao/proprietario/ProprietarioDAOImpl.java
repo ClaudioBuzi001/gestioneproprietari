@@ -62,7 +62,7 @@ public class ProprietarioDAOImpl implements ProprietarioDAO {
 
 		// FIXME Controllare se la sintassi è giusta
 		TypedQuery query = entityManager.createQuery(
-				"count(*) from Proprietario p join p.automobili a where a.annoImmatricolazione > ?1",
+				"count(*) from Proprietario p join p.automobili a where a.annoimmatricolazione > ?1",
 				Proprietario.class);
 
 		return query.setParameter(1, annoInput).getFirstResult();
