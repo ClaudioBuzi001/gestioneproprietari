@@ -46,7 +46,8 @@ public class TestProprietarioAutomobile {
 			
 			// TEST AUTOMOBILE
 			testInserisciAutomobile(automobileService);
-			
+			testCaricaSingolaAutomobile(automobileService);
+			testAggiornaAutomobile(automobileService);
 			
 			
 
@@ -153,5 +154,31 @@ public class TestProprietarioAutomobile {
 		System.out.println(".......testInserisciAutomobile fine: PASSED.............");
 
 	}
+	
+	private static void testCaricaSingolaAutomobile(AutomobileService automobileService) throws Exception {
+		System.out.println(".......testCaricaSingolaAutomobile inizio.............");
+		// creo nuovo Proprietario
+		// salvo
+		if (automobileService.caricaSingolaAutomobile(1L) == null)
+			throw new RuntimeException("_------------testCaricaSingolaAutomobile FAILED-----------_");
+
+		System.out.println(".......testCaricaSingolaAutomobile fine: PASSED.............");
+	}
+	
+	private static void testAggiornaAutomobile(AutomobileService automobileService) throws Exception {
+		System.out.println(".......testAggiornaAutomobile inizio.............");
+		Automobile autoDaAggiornare = automobileService.caricaSingolaAutomobile(9L);
+		autoDaAggiornare.setMarca("FerrariROSSA");
+		autoDaAggiornare.setModello("FIAMMA VOLANTE NEL CIELO");
+		
+		
+		automobileService.aggiorna(autoDaAggiornare);
+		if (autoDaAggiornare.getMarca() != "FerrariROSSA" )
+			throw new RuntimeException("_-----------testAggiornaAutomobile FAILED");
+
+		System.out.println(".......testAggiornaAutomobile fine: PASSED.............");
+	}
+
+	
 
 }

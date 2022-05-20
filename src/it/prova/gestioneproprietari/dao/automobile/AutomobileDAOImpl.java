@@ -65,8 +65,8 @@ public class AutomobileDAOImpl implements AutomobileDAO {
 	}
 
 	@Override
-	public List<Automobile> findAllByErroreProprietarioMinorenne() {
-		return entityManager.createQuery("from Automobile a where a.proprietario.eta < 18", Automobile.class).getResultList();
+	public List<Automobile> findAllByErroreProprietarioMinorenne() { //FIXME
+		return entityManager.createQuery("from Automobile a where a.proprietario.dataNascita", Automobile.class).getResultList();
 	}
 
 }
