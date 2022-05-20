@@ -1,6 +1,7 @@
 package it.prova.gestioneproprietari.test;
 
 import it.prova.gestioneproprietari.dao.EntityManagerUtil;
+import it.prova.gestioneproprietari.model.Automobile;
 import it.prova.gestioneproprietari.model.Proprietario;
 import it.prova.gestioneproprietari.service.MyServiceFactory;
 import it.prova.gestioneproprietari.service.automobile.AutomobileService;
@@ -36,6 +37,8 @@ public class TestProprietarioAutomobile {
 			testAggiornaProprietario(proprietarioService);
 			
 			//testRimuoviProprietario(proprietarioService);
+			
+			testContaQuantiProprietariConAutoImmatricolataDopo(proprietarioService);
 
 		} catch (Throwable e) {
 			e.printStackTrace();
@@ -103,5 +106,43 @@ public class TestProprietarioAutomobile {
 	}
 	
 	//TODO TEST METODO AGGIUNTIVO
+	private static void testContaQuantiProprietariConAutoImmatricolataDopo(ProprietarioService proprietarioService) throws Exception {
+		System.out.println("_----------testContaQuantiProprietariConAutoImmatricolataDopo INIZIO----------_");
+		
+		Long result = proprietarioService.contaQuantiProprietariConAutoImmatricolataDopo(2010);
+		
+		if(result == 0)
+			throw new RuntimeException("_----------testContaQuantiProprietariConAutoImmatricolataDopo FAILED------_");
+		System.out.println(result);
+		
+		System.out.println("_----------testContaQuantiProprietariConAutoImmatricolataDopo PASSED----------_");
+		
+		
+		
+	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

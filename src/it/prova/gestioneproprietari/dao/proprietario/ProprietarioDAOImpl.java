@@ -55,17 +55,17 @@ public class ProprietarioDAOImpl implements ProprietarioDAO {
 
 	// TODO Implementare!!
 	@Override
-	public int CountProprietariWithAutoImmatricolataDopo(int annoInput) {
+	public Long CountProprietariWithAutoImmatricolataDopo(int annoInput) {
 		// Contollo input
 		if (annoInput < 1900)
 			throw new RuntimeException("ERRORE: input non valido");
 
 		// FIXME Controllare se la sintassi è giusta
-		TypedQuery query = entityManager.createQuery(
-				"count(*) from Proprietario p join p.automobili a where a.annoimmatricolazione > ?1",
-				Proprietario.class);
+		TypedQuery<Long> query = entityManager.createQuery(
+				"select count(p) from Proprietario p join  p.automobili a where a.annoImmatricolazione > ?1",
+				Long.class);
 
-		return query.setParameter(1, annoInput).getFirstResult();
+		return query.setParameter(1, annoInput).getSingleResult();
 	}
 
 }

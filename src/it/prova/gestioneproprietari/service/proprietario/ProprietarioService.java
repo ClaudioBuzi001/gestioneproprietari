@@ -25,6 +25,6 @@ public interface ProprietarioService {
 	public void rimuovi(Proprietario proprietarioDaRimovere) throws Exception;
 
 	// contaproprietari METODO AGGIUNTIVO NO CRUD
-	public int contaQuantiProprietariConAutoImmatricolataDopo(int anno) throws Exception;
+	public Long contaQuantiProprietariConAutoImmatricolataDopo(int anno) throws Exception;
 
 }

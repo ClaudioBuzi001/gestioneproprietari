@@ -8,7 +8,7 @@ public interface ProprietarioDAO extends IBaseDAO<Proprietario>{
 	
 	//in ProprietarioDAO e ovviamente nel ProprietarioService
 	//quanti proprietario possiedono automobili immatricolate da un certo anno in poi (Date anno)
-	public int CountProprietariWithAutoImmatricolataDopo(int annoInput);
+	public Long CountProprietariWithAutoImmatricolataDopo(int annoInput);
 	
 	//COMPLETO
 }
