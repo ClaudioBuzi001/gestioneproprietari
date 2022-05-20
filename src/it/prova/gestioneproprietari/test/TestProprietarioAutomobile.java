@@ -30,6 +30,8 @@ public class TestProprietarioAutomobile {
 			System.out.println(
 					"In tabella Proprietario ci sono: " + proprietarioService.listaTuttiProprietari().size() + " elementi");
 			
+			testCaricaSingoloProprietario(proprietarioService);
+			
 		} catch (Throwable e) {
 			e.printStackTrace();
 		} finally {
@@ -55,5 +57,18 @@ public class TestProprietarioAutomobile {
 
 		System.out.println(".......testInserisciProprietario fine: PASSED.............");
 	}
+	
+	private static void testCaricaSingoloProprietario(ProprietarioService proprietarioService) throws Exception {
+		System.out.println(".......testCaricaSingoloProprietario inizio.............");
+		// creo nuovo Proprietario
+		// salvo
+		if(proprietarioService.caricaSingoloProprietario(1L) == null)
+			throw new RuntimeException("_------------testCaricaSingoloProprietario FAILED-----------_");
+		
+
+		System.out.println(".......testCaricaSingoloProprietario fine: PASSED.............");
+	}
+	
+	
 
 }
