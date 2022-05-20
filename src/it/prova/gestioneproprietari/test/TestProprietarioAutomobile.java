@@ -35,10 +35,20 @@ public class TestProprietarioAutomobile {
 			testCaricaSingoloProprietario(proprietarioService);
 
 			testAggiornaProprietario(proprietarioService);
-			
-			//testRimuoviProprietario(proprietarioService);
-			
+
+			// testRimuoviProprietario(proprietarioService);
+
 			testContaQuantiProprietariConAutoImmatricolataDopo(proprietarioService);
+
+			// ----------------------
+
+			
+			
+			// TEST AUTOMOBILE
+			testInserisciAutomobile(automobileService);
+			
+			
+			
 
 		} catch (Throwable e) {
 			e.printStackTrace();
@@ -92,57 +102,56 @@ public class TestProprietarioAutomobile {
 	private static void testRimuoviProprietario(ProprietarioService proprietarioService) throws Exception {
 		System.out.println(".......testRimuoviProprietario inizio.............");
 		Proprietario daEliminare = proprietarioService.caricaSingoloProprietario(2L);
-		
+
 		int conferma = proprietarioService.listaTuttiProprietari().size();
-		System.out.println("Il numero di elemetni in tablella prima del rimuovi "+ proprietarioService.listaTuttiProprietari().size());
+		System.out.println("Il numero di elemetni in tablella prima del rimuovi "
+				+ proprietarioService.listaTuttiProprietari().size());
 		proprietarioService.rimuovi(daEliminare);
 
-		if(proprietarioService.listaTuttiProprietari().size() == conferma)
+		if (proprietarioService.listaTuttiProprietari().size() == conferma)
 			throw new RuntimeException("testRimuoviProprietario");
-		System.out.println("Il numero di elemetni in tablella prima del rimuovi "+ proprietarioService.listaTuttiProprietari().size());
-			
+		System.out.println("Il numero di elemetni in tablella prima del rimuovi "
+				+ proprietarioService.listaTuttiProprietari().size());
+
 		System.out.println(".......testRimuoviProprietario fine: PASSED.............");
 
 	}
-	
-	//TODO TEST METODO AGGIUNTIVO
-	private static void testContaQuantiProprietariConAutoImmatricolataDopo(ProprietarioService proprietarioService) throws Exception {
+
+	// TODO TEST METODO AGGIUNTIVO
+	private static void testContaQuantiProprietariConAutoImmatricolataDopo(ProprietarioService proprietarioService)
+			throws Exception {
 		System.out.println("_----------testContaQuantiProprietariConAutoImmatricolataDopo INIZIO----------_");
-		
+
 		Long result = proprietarioService.contaQuantiProprietariConAutoImmatricolataDopo(2010);
-		
-		if(result == 0)
+
+		if (result == 0)
 			throw new RuntimeException("_----------testContaQuantiProprietariConAutoImmatricolataDopo FAILED------_");
 		System.out.println(result);
-		
+
 		System.out.println("_----------testContaQuantiProprietariConAutoImmatricolataDopo PASSED----------_");
-		
-		
-		
+
 	}
-	
+
+	// TEST AUTOMOBILE
+	private static void testInserisciAutomobile(AutomobileService automobileService) throws Exception {
+
+		System.out.println(".......testInserisciAutomobile inizio.............");
+		// creo nuovo Proprietario
+		Automobile daAggiungere = new Automobile("AUDI", "R8 LMS ULTRA", "DP760YZ", 2022);
+
+		System.out.println(
+				"Elementi in Tabella Automobili Prima dell insert: " + automobileService.listaTutteAutomobili().size());
+		// salvo
+		automobileService.inserisci(daAggiungere);
+		// da questa riga in poi il record, se correttamente inserito, ha un nuovo id
+		// (NOVITA' RISPETTO AL PASSATO!!!)
+		if (daAggiungere.getId() < 1)
+			throw new RuntimeException("testInserisciAutomobile fallito ");
+
+		System.out.println(
+				"Elementi in Tabella Automobili Dopo dell insert: " + automobileService.listaTutteAutomobili().size());
+		System.out.println(".......testInserisciAutomobile fine: PASSED.............");
+
+	}
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
