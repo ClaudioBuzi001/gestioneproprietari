@@ -60,13 +60,13 @@ public class AutomobileDAOImpl implements AutomobileDAO {
 		//Controllo input
 		if(iniziale == null || iniziale.isEmpty())
 			throw new RuntimeException("ERRORE: input non valido");
-		TypedQuery<Automobile> query = entityManager.createQuery("from Autmobile a where a.proprietario.codicefiscale like ?1", Automobile.class);
-		return query.setParameter(1, iniziale).getResultList();
+		TypedQuery<Automobile> query = entityManager.createQuery("select distinct a from Automobile a join a.proprietario p  where p.codiceFiscale like ?1", Automobile.class);
+		return query.setParameter(1, iniziale+"%").getResultList();
 	}
 
 	@Override
 	public List<Automobile> findAllByErroreProprietarioMinorenne() { //FIXME
-		return entityManager.createQuery("from Automobile a where a.proprietario.dataNascita", Automobile.class).getResultList();
+		 return entityManager.createQuery("select  a from Automobile a  join a.proprietario p  where p.dataNascita > '2004-01-01'", Automobile.class).getResultList();
 	}
 
 }

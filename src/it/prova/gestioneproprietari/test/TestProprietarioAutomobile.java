@@ -1,5 +1,7 @@
 package it.prova.gestioneproprietari.test;
 
+import java.util.List;
+
 import it.prova.gestioneproprietari.dao.EntityManagerUtil;
 import it.prova.gestioneproprietari.model.Automobile;
 import it.prova.gestioneproprietari.model.Proprietario;
@@ -48,8 +50,10 @@ public class TestProprietarioAutomobile {
 			//testInserisciAutomobile(automobileService);
 			testCaricaSingolaAutomobile(automobileService);
 			testAggiornaAutomobile(automobileService);
-			testRimuoviAutomobile(automobileService);
+			//testRimuoviAutomobile(automobileService);
+			testTrovaTutteAutomobiliConCodiceFiscaleProprietarioInizaCon(automobileService);
 			
+			testTrovaTutteAutomobiliConErrorePerProprietarioMinorenne(automobileService);
 			
 
 		} catch (Throwable e) {
@@ -198,5 +202,35 @@ public class TestProprietarioAutomobile {
 		System.out.println(".......testRimuoviAutomobile fine: PASSED.............");
 
 	}
+	
+	private static void testTrovaTutteAutomobiliConCodiceFiscaleProprietarioInizaCon(AutomobileService automobileService) throws Exception {
+		System.out.println(".......testTrovaTutteAutomobiliConCodiceFiscaleProprietarioInizaCon inizio.............");
+		
+		String iniziale = "bn";
+		List<Automobile> result = automobileService.trovaTutteAutomobiliConCodiceFiscaleProprietarioInizaCon(iniziale);
+
+		if(result.size() == 0)
+			throw new RuntimeException("_--------------testTrovaTutteAutomobiliConCodiceFiscaleProprietarioInizaCon FAILED");
+		
+		
+		System.out.println(".......testTrovaTutteAutomobiliConCodiceFiscaleProprietarioInizaCon fine: PASSED.............");
+
+	}
+	
+	private static void testTrovaTutteAutomobiliConErrorePerProprietarioMinorenne(AutomobileService automobileService) throws Exception {
+		System.out.println(".......testTrovaTutteAutomobiliConErrorePerProprietarioMinorenne inizio.............");
+		
+		;
+		List<Automobile> result = automobileService.trovaTutteAutomobiliConErrorePerProprietarioMinorenne();
+
+		if(result.size() == 0)
+			throw new RuntimeException("_--------------testTrovaTutteAutomobiliConErrorePerProprietarioMinorenne FAILED");
+		
+		
+		System.out.println(".......testTrovaTutteAutomobiliConErrorePerProprietarioMinorenne fine: PASSED.............");
+
+	}
+	
+	
 
 }
