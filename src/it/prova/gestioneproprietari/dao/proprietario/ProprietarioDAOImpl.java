@@ -3,6 +3,7 @@ package it.prova.gestioneproprietari.dao.proprietario;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import it.prova.gestioneproprietari.model.Proprietario;
 
@@ -12,6 +13,7 @@ public class ProprietarioDAOImpl implements ProprietarioDAO {
 	EntityManager entityManager;
 
 	// setter entityManager
+	@Override
 	public void setEntityManager(EntityManager entityManager) {
 		this.entityManager = entityManager;
 	}
@@ -28,7 +30,7 @@ public class ProprietarioDAOImpl implements ProprietarioDAO {
 
 	@Override
 	public void update(Proprietario o) throws Exception {
-		if(o == null)
+		if (o == null)
 			throw new RuntimeException("Errore: input non valido");
 		o = entityManager.merge(o);
 
@@ -36,26 +38,34 @@ public class ProprietarioDAOImpl implements ProprietarioDAO {
 
 	@Override
 	public void insert(Proprietario o) throws Exception {
-		if(o == null)
+		if (o == null)
 			throw new RuntimeException("ERRORE: input non valido");
-		
+
 		entityManager.persist(o);
 
 	}
 
 	@Override
 	public void delete(Proprietario o) throws Exception {
-		if(o == null)
+		if (o == null)
 			throw new RuntimeException("ERRORE: input non valido");
 		entityManager.remove(entityManager.merge(o));
 
 	}
 
-	//TODO Implementare!!
+	// TODO Implementare!!
 	@Override
 	public int CountProprietariWithAutoImmatricolataDopo(int annoInput) {
+		// Contollo input
+		if (annoInput < 1900)
+			throw new RuntimeException("ERRORE: input non valido");
 
-		return 0;
+		// FIXME Controllare se la sintassi è giusta
+		TypedQuery query = entityManager.createQuery(
+				"count(*) from Proprietario p join p.automobili a where a.annoImmatricolazione > ?1",
+				Proprietario.class);
+
+		return query.setParameter(1, annoInput).getFirstResult();
 	}
 
 }
