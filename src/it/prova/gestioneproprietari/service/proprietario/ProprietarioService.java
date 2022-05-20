@@ -6,22 +6,25 @@ import it.prova.gestioneproprietari.dao.proprietario.ProprietarioDAO;
 import it.prova.gestioneproprietari.model.Proprietario;
 
 public interface ProprietarioService {
-
-	//Implemento la firma di tutti i metodi, SCRITTI IN ITALIANO
-	public List<Proprietario> listaTuttiProprietari() throws Exception;
-	//get
-	public Proprietario caricaSingoloProprietario(Long id) throws Exception;
-	//update
-	public void aggiorna(Proprietario proprietarioDaAggiornare) throws Exception;
-	//insert
-	public void inserisciNuovo(Proprietario proprietarioDaInserire) throws Exception;
-	//delete
-	public void rimuovi(Proprietario proprietarioDaRimovere) throws Exception;
-	//contaproprietari METODO AGGIUNTIVO NO CRUD
-	public int contaQuantiProprietariConAutoImmatricolataDopo(int anno) throws Exception;
-	
-	//per injection
+	// per injection
 	public void setProprietarioDAO(ProprietarioDAO proprietarioDAO);
-	
-	
+
+	// Implemento la firma di tutti i metodi, SCRITTI IN ITALIANO
+	public List<Proprietario> listaTuttiProprietari() throws Exception;
+
+	// get
+	public Proprietario caricaSingoloProprietario(Long id) throws Exception;
+
+	// update
+	public void aggiorna(Proprietario proprietarioDaAggiornare) throws Exception;
+
+	// insert
+	public void inserisciNuovo(Proprietario proprietarioDaInserire) throws Exception;
+
+	// delete
+	public void rimuovi(Proprietario proprietarioDaRimovere) throws Exception;
+
+	// contaproprietari METODO AGGIUNTIVO NO CRUD
+	public int contaQuantiProprietariConAutoImmatricolataDopo(int anno) throws Exception;
+
 }
