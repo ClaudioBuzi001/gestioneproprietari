@@ -45,9 +45,10 @@ public class TestProprietarioAutomobile {
 			
 			
 			// TEST AUTOMOBILE
-			testInserisciAutomobile(automobileService);
+			//testInserisciAutomobile(automobileService);
 			testCaricaSingolaAutomobile(automobileService);
 			testAggiornaAutomobile(automobileService);
+			testRimuoviAutomobile(automobileService);
 			
 			
 
@@ -179,6 +180,23 @@ public class TestProprietarioAutomobile {
 		System.out.println(".......testAggiornaAutomobile fine: PASSED.............");
 	}
 
-	
+	//TODO METODO RIMUOVI
+	private static void testRimuoviAutomobile(AutomobileService automobileService) throws Exception {
+		System.out.println(".......testRimuoviAutomobile inizio.............");
+		Automobile autmobileDaEliminare = automobileService.caricaSingolaAutomobile(10L);
+
+		int conferma = automobileService.listaTutteAutomobili().size();
+		System.out.println("Il numero di elemetni in tablella prima del rimuovi "
+				+ automobileService.listaTutteAutomobili().size());
+		automobileService.rimuovi(autmobileDaEliminare);
+
+		if (automobileService.listaTutteAutomobili().size() == conferma)
+			throw new RuntimeException("testRimuoviAutomobile");
+		System.out.println("Il numero di elemetni in tablella dopo del rimuovi "
+				+ automobileService.listaTutteAutomobili().size());
+
+		System.out.println(".......testRimuoviAutomobile fine: PASSED.............");
+
+	}
 
 }
