@@ -21,6 +21,11 @@ public class TestProprietarioAutomobile {
 			System.out.println(
 					"In tabella Proprietario ci sono: " + proprietarioService.listaTuttiProprietari().size() + " elementi");
 
+			System.out.println("In tabella Auotmobile ci sono: "+ automobileService.listaTutteAutomobili().size()+ " elementi");
+			
+			
+			
+			
 		} catch (Throwable e) {
 			e.printStackTrace();
 		} finally {
